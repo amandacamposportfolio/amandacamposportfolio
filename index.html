@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Amanda Campos - Engenheira Civil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -190,6 +190,107 @@
             border-radius: 20px;
             font-weight: 500;
             font-size: 0.9rem;
+        }
+        
+        /* Seção Cursos */
+        .courses-section {
+            margin-top: 3rem;
+        }
+        
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .course-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--primary-blue);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        
+        .course-title {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        
+        .course-badge {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .course-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .course-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .course-detail i {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+        
+        .course-note {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--light-lime);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .course-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            margin-top: 0.8rem;
+        }
+        
+        .course-link:hover {
+            background-color: var(--medium-blue);
         }
         
         /* Projetos */
@@ -419,6 +520,12 @@
             .download-links-container {
                 width: 100%;
             }
+            
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -446,17 +553,20 @@
                 background: #fff;
             }
             
-            /* Marca d'água */
+            /* Marca d'água no canto superior */
             body::before {
                 content: "Amanda Campos";
                 position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) rotate(-45deg);
-                font-size: 60pt;
-                color: rgba(0, 0, 0, 0.08);
+                top: 5%;
+                right: 5%;
+                transform: rotate(0deg);
+                font-size: 20pt;
+                color: rgba(0, 0, 0, 0.1);
                 z-index: -1;
                 pointer-events: none;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-weight: 300;
+                letter-spacing: 2px;
             }
             
             /* Esconder elementos não necessários na impressão */
@@ -470,11 +580,14 @@
                 background: none;
                 color: #000;
                 text-align: left;
+                border-bottom: 2px solid #1a3d8b;
+                margin-bottom: 1.5rem;
             }
             
             .hero h1 {
                 font-size: 24pt;
                 margin-bottom: 0.5rem;
+                color: #1a3d8b;
             }
             
             .profile-img {
@@ -482,6 +595,7 @@
                 height: 120px;
                 float: right;
                 margin: 0 0 1rem 1rem;
+                border: 3px solid #1a3d8b;
             }
             
             section {
@@ -493,22 +607,119 @@
                 box-shadow: none;
                 border: 1px solid #ddd;
                 page-break-inside: avoid;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
+                break-inside: avoid;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
+                display: block !important;
             }
 
-            .download-links-container {
-                display: block;
+            /* Forçar quebra de página após cada projeto para manter tudo junto */
+            .project-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
-
-            .download-link {
-                display: block;
-                margin-bottom: 0.5rem;
+            
+            /* Mostrar todos os arquivos dos projetos na impressão */
+            .project-files-list {
+                display: block !important;
+                margin-top: 1rem;
+                padding: 0.8rem;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 4px;
                 page-break-inside: avoid;
             }
+            
+            .project-files-list h4 {
+                color: #1a3d8b;
+                margin-bottom: 0.5rem;
+                font-size: 11pt;
+            }
+            
+            .file-item {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.3rem 0;
+                border-bottom: 1px dotted #ccc;
+                font-size: 10pt;
+            }
+            
+            .file-item:last-child {
+                border-bottom: none;
+            }
+            
+            .file-path {
+                color: #666;
+                font-family: monospace;
+                font-size: 9pt;
+                word-break: break-all;
+            }
+            
+            /* Estilos para cursos na impressão */
+            .course-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+            
+            .course-link {
+                background-color: #fff;
+                color: #000;
+                border: 1px solid #000;
+                page-break-inside: avoid;
+            }
+            
+            /* Garantir que os cursos também fiquem juntos */
+            .course-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            /* Ajustar espaçamento para melhor leitura */
+            .section-title {
+                color: #1a3d8b;
+                border-bottom: 2px solid #e2f443;
+                font-size: 16pt;
+                margin-top: 1.5rem;
+            }
+            
+            /* Melhorar legibilidade do texto */
+            p, li, span {
+                color: #333;
+            }
+            
+            /* Ajustar cores para impressão */
+            .software-chip {
+                background-color: #f0f0f0;
+                color: #333;
+                border: 1px solid #ccc;
+            }
+            
+            .course-badge {
+                background-color: #1a3d8b;
+                color: white;
+            }
+            
+            .course-note {
+                background-color: #f0f0f0;
+                color: #333;
+                border: 1px solid #ccc;
+            }
+            
+            /* Links em preto para impressão */
+            a {
+                color: #000 !important;
+                text-decoration: underline;
+            }
+        }
+        
+        /* Classe para lista de arquivos (inicialmente oculta) */
+        .project-files-list {
+            display: none;
         }
     </style>
 </head>
@@ -582,6 +793,106 @@
                         <div class="software-chip">Word</div>
                         <div class="software-chip">Excel</div>
                     </div>
+                    
+                    <!-- Nova Seção: Cursos Complementares -->
+                    <div class="courses-section">
+                        <h3>Cursos Complementares</h3>
+                        <div class="courses-list">
+                            <!-- Curso 1 -->
+                            <div class="course-card">
+                                <div class="course-header">
+                                    <h4 class="course-title">Conceitos essenciais sobre Patologias em Estruturas de Concreto</h4>
+                                    <span class="course-badge">30h</span>
+                                </div>
+                                <div class="course-details">
+                                    <div class="course-detail">
+                                        <i class="fas fa-university"></i>
+                                        <span>ENAP</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Mar-Abr 2024</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="course-note">
+                                    <i class="fas fa-star"></i>
+                                    Nota final: 92
+                                </div>
+                                <a href="img/cursos/2024 - 30h - Conceitos essenciais sobre Patologias em Estruturas de Concreto.pdf" 
+                                   class="course-link" target="_blank">
+                                    <i class="fas fa-certificate"></i>
+                                    Ver Certificado
+                                </a>
+                            </div>
+                            
+                            <!-- Curso 2 -->
+                            <div class="course-card">
+                                <div class="course-header">
+                                    <h4 class="course-title">Introdução à orçamentação de obras rodoviárias</h4>
+                                    <span class="course-badge">40h</span>
+                                </div>
+                                <div class="course-details">
+                                    <div class="course-detail">
+                                        <i class="fas fa-university"></i>
+                                        <span>ENAP</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Fev-Abr 2025</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="course-note">
+                                    <i class="fas fa-star"></i>
+                                    Nota final: 82
+                                </div>
+                                <a href="img/cursos/2025 - 40h - Introdução à orçamentação de obras rodoviárias.pdf" 
+                                   class="course-link" target="_blank">
+                                    <i class="fas fa-certificate"></i>
+                                    Ver Certificado
+                                </a>
+                            </div>
+                            
+                            <!-- Curso 3 -->
+                            <div class="course-card">
+                                <div class="course-header">
+                                    <h4 class="course-title">Introdução ao Excel</h4>
+                                    <span class="course-badge">25h</span>
+                                </div>
+                                <div class="course-details">
+                                    <div class="course-detail">
+                                        <i class="fas fa-university"></i>
+                                        <span>ENAP</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Nov 2025</span>
+                                    </div>
+                                    <div class="course-detail">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="course-note">
+                                    <i class="fas fa-star"></i>
+                                    Nota final: 70.83
+                                </div>
+                                <a href="img/cursos/2025 - 25h - Introdução ao Excel.pdf" 
+                                   class="course-link" target="_blank">
+                                    <i class="fas fa-certificate"></i>
+                                    Ver Certificado
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fim da Seção Cursos -->
                     
                     <div style="margin-top: 2.5rem; padding: 1.5rem; background-color: var(--light-lime); border-radius: 10px;">
                         <h3 style="color: var(--primary-blue);">Áreas de Interesse</h3>
@@ -773,6 +1084,46 @@
                     additionalFilesHTML += '</div></div>';
                 }
                 
+                // Criar lista de arquivos para impressão
+                let printFilesHTML = '';
+                let allFiles = [];
+                
+                // Adicionar arquivo principal
+                if (project.mainFile !== '#') {
+                    allFiles.push({
+                        name: 'Arquivo Principal',
+                        path: project.mainFile,
+                        type: 'PDF'
+                    });
+                }
+                
+                // Adicionar arquivos adicionais
+                if (project.additionalFiles && project.additionalFiles.length > 0) {
+                    project.additionalFiles.forEach(file => {
+                        allFiles.push({
+                            name: file.name,
+                            path: file.path,
+                            type: file.isFolder ? 'Pasta' : file.path.split('.').pop().toUpperCase()
+                        });
+                    });
+                }
+                
+                if (allFiles.length > 0) {
+                    printFilesHTML = '<div class="project-files-list">';
+                    printFilesHTML += '<h4>Arquivos do Projeto:</h4>';
+                    
+                    allFiles.forEach(file => {
+                        printFilesHTML += `
+                            <div class="file-item">
+                                <span><strong>${file.name}</strong> (${file.type})</span>
+                                <span class="file-path">${file.path}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    printFilesHTML += '</div>';
+                }
+                
                 projectCard.innerHTML = `
                     <div class="project-info">
                         <span class="project-category">${project.software}</span>
@@ -787,6 +1138,7 @@
                             }
                         </div>
                         ${additionalFilesHTML}
+                        ${printFilesHTML}
                     </div>
                 `;
                 
